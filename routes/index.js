@@ -13,4 +13,17 @@ router.get('/', function (req, res) {
     })
 })
 
+router.get('/userid/:id', function (req, res) {
+  const id = Number(req.params.id)
+  const connection = req.app.get('connection')
+  db.getUser(id, connection)
+    .then(user => {
+
+      res.render('userid', user)
+    })
+    .catch(function (err) {
+      res.status(500).send('DATABASE ERROR' + err.message)
+    })
+})
+
 module.exports = router
