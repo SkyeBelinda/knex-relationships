@@ -24,19 +24,18 @@ router.get('/userid/:id', function (req, res) {
       res.status(500).send('DATABASE ERROR' + err.message)
     })
 })
+// router.get('/form/:id', function (req, res) {
+//   const connection = req.app.get('connection')
+//   const id = Number(req.params.id)
 
-router.get('/form/:id', function (req, res) {
-  const connection = req.app.get('connection')
-  const id = Number(req.params.id)
-
-  connection('users')
-    .select()
-    .then(() => {
-      res.render('form', user)
-    })
-    .catch(error => {
-      res.status(500).send(error.message)
-    })
-})
+//   connection('users')
+//     .select()
+//     .then(() => {
+//       res.render('form', user)
+//     })
+//     .catch(error => {
+//     res.status(500).send(error.message)
+//   })
+// })
 
 module.exports = router

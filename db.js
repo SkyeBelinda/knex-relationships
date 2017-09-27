@@ -9,5 +9,9 @@ function getUsers (connection) {
 }
 
 function getUser (id, connection) {
-  return connection('users').where('id', id).first()
+  return connection('users')
+    .join('profiles', 'profiles.user_id', 'users.id')
+    .select('users.id', 'profiles.image', 'profiles.URL as url')
+    .where('users.id', id)
+    .first()
 }
