@@ -18,11 +18,24 @@ router.get('/userid/:id', function (req, res) {
   const connection = req.app.get('connection')
   db.getUser(id, connection)
     .then(user => {
-
       res.render('userid', user)
     })
     .catch(function (err) {
       res.status(500).send('DATABASE ERROR' + err.message)
+    })
+})
+
+router.get('/form/:id', function (req, res) {
+  const connection = req.app.get('connection')
+  const id = Number(req.params.id)
+
+  connection('users')
+    .select()
+    .then(() => {
+      res.render('form', user)
+    })
+    .catch(error => {
+      res.status(500).send(error.message)
     })
 })
 
